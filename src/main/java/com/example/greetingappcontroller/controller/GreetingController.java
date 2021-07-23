@@ -28,13 +28,17 @@ public class GreetingController {
     public Greeting getById(@PathVariable Long id){
         return greetingService.getGreetingById(id);
     }
-    @GetMapping("/greetings")
+    @GetMapping("/greet")
     public List<Greeting> getAllGreetings(){
         return greetingService.getAll();
     }
     @PutMapping("/greeting/{id}")
     public Greeting updateById(@PathVariable Long id, @RequestBody User user){
         return greetingService.updateGreeting(id,user);
+    }
+    @DeleteMapping("/greeting/{id}")
+    public Greeting deleteById(@PathVariable Long id){
+        return greetingService.deleteGreeting(id);
     }
 
 }
