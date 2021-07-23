@@ -5,6 +5,9 @@ import com.example.greetingappcontroller.entity.User;
 import com.example.greetingappcontroller.repository.GreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -30,6 +33,15 @@ public class GreetingService implements IGreetingService{
     @Override
     public List<Greeting> getAll() {
         return greetingRepository.findAll();
+    }
+    @Override
+    public Greeting updateGreeting(long id,User user) {
+        String message = String.format(template,user.toString());
+        return greetingRepository.findById(id).
+                map(greeting -> {
+                    greeting.setMessage(message);
+                    return this.greetingRepository.save(greeting);
+                }).get();
     }
 
 }
