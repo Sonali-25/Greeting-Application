@@ -20,8 +20,7 @@ public class GreetingController {
 
     @GetMapping("/greeting")
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "world") String name) {
-        User user = new User(name,"Jha");
+        User user = new User("firstName","lastName");
         return greetingService.addGreeting(user);
     }
-
 }

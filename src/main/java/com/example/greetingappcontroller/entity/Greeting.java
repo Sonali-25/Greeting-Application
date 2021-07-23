@@ -1,13 +1,22 @@
 package com.example.greetingappcontroller.entity;
 
-public class Greeting {
+import javax.persistence.Id;
+import javax.persistence.Entity;
 
+@Entity
+public class Greeting {
+    @Id
     private long id;
     private String message;
 
     public Greeting(long id, String message) {
         this.id = id;
         this.message = message;
+    }
+
+    public Greeting() {
+        id = 0;
+        message = "";
     }
 
     public long getId() {
@@ -23,4 +32,3 @@ public class Greeting {
         this.message = message;
     }
 }
-
